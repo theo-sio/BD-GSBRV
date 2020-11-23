@@ -427,10 +427,6 @@ CREATE TABLE `RapportVisite` (
   `rap_date_visite` date NOT NULL,
   `rap_bilan` varchar(510) DEFAULT '',
   `pra_num` int(11) DEFAULT NULL,
-  `rap_date_redaction` date DEFAULT NULL,
-  `rap_motif` varchar(50) DEFAULT 'visite',
-  `rap_lu` tinyint(1) DEFAULT '0',
-  `rap_coef_confiance` int(11) DEFAULT '1',
   PRIMARY KEY (`vis_matricule`,`rap_num`),
   KEY `FK_RAPPORT_VISITE_PRATICIEN` (`pra_num`),
   CONSTRAINT `FK_RAPPORT_VISITE_PRATICIEN` FOREIGN KEY (`pra_num`) REFERENCES `Praticien` (`pra_num`),
@@ -444,7 +440,6 @@ CREATE TABLE `RapportVisite` (
 
 LOCK TABLES `RapportVisite` WRITE;
 /*!40000 ALTER TABLE `RapportVisite` DISABLE KEYS */;
-INSERT INTO `RapportVisite` VALUES ('a131',1,'2018-03-01','RAS',22,'2019-03-12','visite',0,1),('a131',2,'2018-04-02','RAS',22,'2019-03-12','visite',0,2),('a131',3,'2018-04-03','RAS',18,'2019-03-12','visite',0,1),('a131',4,'2018-05-10','RAS',22,'2019-03-12','visite',0,3),('a131',5,'2018-05-21','RAS',18,'2019-03-12','visite',0,1);
 /*!40000 ALTER TABLE `RapportVisite` ENABLE KEYS */;
 UNLOCK TABLES;
 
