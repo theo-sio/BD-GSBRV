@@ -12,6 +12,8 @@ public class ModeleGsbRv {
     
     public static Visiteur seConnecter( String matricule , String mdp ) throws ConnexionException{
         
+        // Code de test à compléter
+        
         Connection connexion = ConnexionBD.getConnexion() ;
         
         String requete = "select vis_nom "
