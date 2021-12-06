@@ -1,19 +1,27 @@
--- MySQL dump 10.13  Distrib 5.5.62, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.19  Distrib 10.3.31-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: gsbrv
 -- ------------------------------------------------------
--- Server version	5.5.62-0+deb8u1
+-- Server version	10.3.31-MariaDB-0+deb10u1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Current Database: `gsbrv`
+--
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `gsbrv` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+
+USE `gsbrv`;
 
 --
 -- Table structure for table `ActiviteCompl`
@@ -23,7 +31,7 @@ DROP TABLE IF EXISTS `ActiviteCompl`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ActiviteCompl` (
-  `ac_num` int(11) NOT NULL DEFAULT '0',
+  `ac_num` int(11) NOT NULL DEFAULT 0,
   `ac_date` date DEFAULT NULL,
   `ac_lieu` varchar(50) DEFAULT NULL,
   `ac_theme` varchar(20) DEFAULT NULL,
@@ -198,8 +206,8 @@ DROP TABLE IF EXISTS `Inviter`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Inviter` (
-  `ac_num` int(11) NOT NULL DEFAULT '0',
-  `pra_num` int(11) NOT NULL DEFAULT '0',
+  `ac_num` int(11) NOT NULL DEFAULT 0,
+  `pra_num` int(11) NOT NULL DEFAULT 0,
   `specialisation` char(1) DEFAULT NULL,
   PRIMARY KEY (`ac_num`,`pra_num`),
   KEY `FK_INVITER_PRATICIEN` (`pra_num`),
@@ -282,9 +290,9 @@ DROP TABLE IF EXISTS `Offrir`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Offrir` (
   `vis_matricule` varchar(20) NOT NULL DEFAULT '',
-  `rap_num` int(11) NOT NULL DEFAULT '0',
+  `rap_num` int(11) NOT NULL DEFAULT 0,
   `med_depotlegal` varchar(20) NOT NULL DEFAULT '',
-  `off_quantite` int(2) NOT NULL DEFAULT '1',
+  `off_quantite` int(2) NOT NULL DEFAULT 1,
   PRIMARY KEY (`vis_matricule`,`rap_num`,`med_depotlegal`),
   KEY `FK_OFFRIR_MEDICAMENT` (`med_depotlegal`),
   CONSTRAINT `FK_OFFRIR_MEDICAMENT` FOREIGN KEY (`med_depotlegal`) REFERENCES `Medicament` (`med_depotlegal`)
@@ -309,7 +317,7 @@ DROP TABLE IF EXISTS `Posseder`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Posseder` (
-  `pra_num` int(11) NOT NULL DEFAULT '0',
+  `pra_num` int(11) NOT NULL DEFAULT 0,
   `spe_code` varchar(10) NOT NULL DEFAULT '',
   `pos_diplome` varchar(20) DEFAULT NULL,
   `pos_coefprescription` float DEFAULT NULL,
@@ -337,7 +345,7 @@ DROP TABLE IF EXISTS `Praticien`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Praticien` (
-  `pra_num` int(11) NOT NULL DEFAULT '0',
+  `pra_num` int(11) NOT NULL DEFAULT 0,
   `pra_nom` varchar(50) DEFAULT NULL,
   `pra_prenom` varchar(60) DEFAULT NULL,
   `pra_adresse` varchar(100) DEFAULT NULL,
@@ -423,11 +431,11 @@ DROP TABLE IF EXISTS `RapportVisite`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `RapportVisite` (
   `vis_matricule` varchar(20) NOT NULL DEFAULT '',
-  `rap_num` int(11) NOT NULL DEFAULT '0',
+  `rap_num` int(11) NOT NULL DEFAULT 0,
   `rap_date_visite` date NOT NULL,
   `rap_bilan` varchar(510) DEFAULT '',
-  `rap_date_saisies` date  not null ,
-  `rap_coef_confiance` int(11) DEFAULT null,
+  `rap_date_saisies` date NOT NULL,
+  `rap_coef_confiance` int(11) DEFAULT NULL,
   `rap_motif` varchar(510) DEFAULT '',
   `pra_num` int(11) DEFAULT NULL,
   PRIMARY KEY (`vis_matricule`,`rap_num`),
@@ -454,7 +462,7 @@ DROP TABLE IF EXISTS `Realiser`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Realiser` (
-  `ac_num` int(11) NOT NULL DEFAULT '0',
+  `ac_num` int(11) NOT NULL DEFAULT 0,
   `vis_matricule` varchar(20) NOT NULL DEFAULT '',
   PRIMARY KEY (`ac_num`,`vis_matricule`),
   KEY `FK_REALISER_VISITEUR` (`vis_matricule`),
@@ -669,4 +677,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-03-18 15:08:55
+-- Dump completed on 2021-11-23 10:27:37
